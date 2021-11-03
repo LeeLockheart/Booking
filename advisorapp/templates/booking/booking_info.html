@@ -1,0 +1,30 @@
+{%  extends 'booking/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="col-md-7">
+		<h5>LIST OF BOOKED ADVISORS </h5>
+		<hr>
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Advisor ID</th>
+					<th>Advisor Name</th>
+					<th>Advisor Pic</th>
+					<th>Booking ID</th>
+					<th>Booking Time</th>
+				</tr>
+					{% for i in displayadvisor %}
+						<tr>
+							<td>{{i.dispalyadvisor.id}}</td>
+
+							<td>{{i.advname}}</td>
+							<td>{{i.profilepic}}</td>
+							<td>{{i.id}}</td>
+							<td>{{i.date_created}}</td>
+						</tr>
+					{%endfor%}
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock content %}

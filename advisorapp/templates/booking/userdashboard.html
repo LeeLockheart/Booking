@@ -1,0 +1,90 @@
+<style>
+	.button{
+			display:block;
+			width:90px;
+			height:30px;
+			background-color:lightpink;
+			text-align:center;
+			border-radius:10px 0px;
+			text-style:none;
+			border:none;
+			cursor:pointer;
+
+	}
+	.button:hover{
+	background-color:deeppink;
+
+	}
+	.dp{
+		background-image:url("E:\default_dp.png");
+		display:block;
+		width:100px;
+		height:100px;
+	}
+</style>
+{% extends 'booking/main.html'%}
+{%block content%}
+ {%include 'booking/status.html'%}
+{% load static %}
+<br>
+<div class="row">
+	<div class="col-md-5">
+		<h5>LIST OF ADVISORS:</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">Available Advisors</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Advisor name</th>
+					<th>Advisor pic</th>
+          <th>Advisor id</th>
+          <th>Book now</th>
+				</tr>
+					{% for i in displayaddadvisor %}
+						<tr>
+							<td>{{i.advname}}</td>
+							{% if i.profilepic  %}
+								<td><img src="{{i.profilepic.url}}" alt=""></td>
+							{% else  %}
+								<td><img src="{% static 'images/profilepiclogo.png' %}" alt=""></td>
+							{% endif %}
+ 							<td>{{i.id}}</td>
+							<td ><a href="{%url 'list'%}"><button class="button">Book Now</button></a></td>
+						</tr>
+					{%endfor%}
+			</table>
+		</div>
+	</div>
+	<div class="col-md-7">
+		<h5>LIST OF BOOKED ADVISORS </h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">Booked Advisors</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Advisor ID</th>
+					<th>Advisor Name</th>
+					<th>Advisor Pic</th>
+					<th>Booking ID</th>
+					<th>Booking Time</th>
+				</tr>
+					{% for i in displayadvisor %}
+						<tr>
+								<td>{{i.id}}</td>
+							<td>{{i.advname}}</td>
+
+							{% if i.profilepic  %}
+								<td><img src="{{i.profilepic.url}}" alt=""></td>
+							{% else  %}
+								<td><img src="{% static 'images/profilepiclogo.png' %}" alt=""></td>
+							{% endif %}
+							<td>{{i.id}}</td>
+							<td>{{i.date_created}}</td>
+						</tr>
+					{%endfor%}
+
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
